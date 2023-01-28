@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navbar } from "./components/Navbar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Footer } from "./components/Footer";
+import { useEffect, useState } from "react";
+import { TopStories } from "./pages/TopStories";
+import { Contact } from "./pages/Contact";
 
 function App() {
+  const [allNews, setAllNews] = useState([]);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    fetch(
+      "https://api.thenewsapi.com/v1/news/all?locale=gb&language=en&api_token=vhMne7eo4OVpcSaXadh4dYUJMGndkfT2sDmMiAM8&language=en&limit=4"
+    )
+      .then((res) => res.json())
+      .then((result) => setAllNews(result.data))
+      .catch((error) => setError(error));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <div className="container">
+        <Switch>
+          <Route path="/" exact>
+            <Home allNews={allNews} error={error} />
+          </Route>
+          <Route path="/tops" exact>
+            <TopStories />
+          </Route>
+          <Route path="/contact" exact>
+            <Contact />
+          </Route>
+        </Switch>
+      </div>
+      <Footer />
+    </Router>
   );
 }
 
