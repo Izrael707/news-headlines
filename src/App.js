@@ -11,7 +11,7 @@ function App() {
   const [error, setError] = useState("");
   useEffect(() => {
     fetch(
-      "https://api.thenewsapi.com/v1/news/all?locale=gb&language=en&api_token=vhMne7eo4OVpcSaXadh4dYUJMGndkfT2sDmMiAM8&language=en&limit=4"
+      "https://api.thenewsapi.com/v1/news/all?locale=gb&language=en&api_token=8bj0O5ExwLwHBF4EhSJmNmrGMGeSdxBYQN512R7h&language=en&limit=4"
     )
       .then((res) => res.json())
       .then((result) => setAllNews(result.data))

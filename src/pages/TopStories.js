@@ -7,7 +7,7 @@ export const TopStories = () => {
 
   useEffect(() => {
     fetch(
-      "https://api.thenewsapi.com/v1/news/top?locale=gb&language=en&api_token=vhMne7eo4OVpcSaXadh4dYUJMGndkfT2sDmMiAM8"
+      "https://api.thenewsapi.com/v1/news/top?locale=gb&language=en&api_token=8bj0O5ExwLwHBF4EhSJmNmrGMGeSdxBYQN512R7h"
     )
       .then((res) => res.json())
       .then((result) => setTopNews(result.data))
